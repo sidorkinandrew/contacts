@@ -1,0 +1,2 @@
+# contacts
+ Django contacts app
