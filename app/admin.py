@@ -9,7 +9,7 @@ admin.site.unregister(Group)
 # Customize Contacts
 class ContactsAdmin(admin.ModelAdmin):
     # columns to diplay
-    list_display = ('name', 'gender', 'email', 'info', 'phone')
+    list_display = ('id', 'name', 'gender', 'email', 'info', 'phone')
     # columns to edit
     list_editable = ('info',)
     # entries per page
