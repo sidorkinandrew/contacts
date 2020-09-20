@@ -20,3 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
 ]
+
+# customize admin title text
+admin.site.site_header = "Contacts"
+admin.site.index_title = "Welcome to Django Contacts App"
+admin.site.site_title = "Control Panel"
