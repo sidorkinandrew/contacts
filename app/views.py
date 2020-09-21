@@ -13,13 +13,18 @@ from django.views.generic import ListView, DetailView
 #    }
 #    return render(request, 'index.html', context)
 
-def detail(request, id):
-    context = {
-        'contact': get_object_or_404(Contact, pk=id)
-    }
-    return render(request, 'detail.html', context)
+#def detail(request, id):
+#    context = {
+#        'contact': get_object_or_404(Contact, pk=id)
+#    }
+#    return render(request, 'detail.html', context)
 
 class HomeView(ListView):
     template_name = 'index.html'
     model = Contact
     context_object_name = 'contacts'
+
+class ContactDetailView(DetailView):
+    model = Contact
+    template_name = "detail.html"
+    context_object_name = 'contact'
