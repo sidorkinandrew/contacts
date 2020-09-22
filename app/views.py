@@ -33,8 +33,10 @@ def search(request):
 #    context = {'search_term': "",}
     if request.GET:
         search_term = request.GET['search_term']
+        search_results = Contact.objects.filter(name__icontains=search_term)
         context = {
             'search_term': search_term,
+            'contacts': search_results,
         }
         return render(request, 'search.html', context)
     else:
