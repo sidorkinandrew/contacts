@@ -6,43 +6,46 @@ from django.views.generic import ListView, DetailView
 
 from django.db.models import Q
 
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 # Create your views here
 
-#def home(request):
+# def home(request):
 #    context = {
 #        'status': 'Working on this Django Contacts project app',
 #        'contacts': Contact.objects.all,
 #    }
 #    return render(request, 'index.html', context)
 
-#def detail(request, id):
+# def detail(request, id):
 #    context = {
 #        'contact': get_object_or_404(Contact, pk=id)
 #    }
 #    return render(request, 'detail.html', context)
+
 
 class HomeView(ListView):
     template_name = 'index.html'
     model = Contact
     context_object_name = 'contacts'
 
+
 class ContactDetailView(DetailView):
     model = Contact
     template_name = "detail.html"
     context_object_name = 'contact'
 
+
 def search(request):
-#    context = {'search_term': "",}
+    #    context = {'search_term': "",}
     if request.GET:
         search_term = request.GET['search_term']
         search_results = Contact.objects.filter(
-            Q(name__icontains=search_term) | 
-            Q(email__icontains=search_term) | 
-            Q(info__icontains=search_term) | 
-            Q(phone__icontains=search_term) 
-            )
+            Q(name__icontains=search_term) |
+            Q(email__icontains=search_term) |
+            Q(info__icontains=search_term) |
+            Q(phone__icontains=search_term)
+        )
         context = {
             'search_term': search_term,
             'contacts': search_results,
@@ -57,4 +60,14 @@ class ContactCreateView(CreateView):
     template_name = "create.html"
     fields = ['name', 'email', 'phone', 'gender', 'info', 'image']
     success_url = '/'
-    
+
+
+class ContactUpdateView(UpdateView):
+    model = Contact
+    template_name = "update.html"
+    fields = ['name', 'email', 'phone', 'gender', 'info', 'image']
+    # success_url = '/' default behavior
+
+    def form_valid(self, form):
+        instance = form.save()
+        return redirect('detail', instance.id)
