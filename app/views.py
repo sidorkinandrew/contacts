@@ -6,6 +6,8 @@ from django.views.generic import ListView, DetailView
 
 from django.db.models import Q
 
+from django.views.generic.edit import CreateView
+
 # Create your views here
 
 #def home(request):
@@ -48,3 +50,11 @@ def search(request):
         return render(request, 'search.html', context)
     else:
         return redirect('home')
+
+
+class ContactCreateView(CreateView):
+    model = Contact
+    template_name = "create.html"
+    fields = ['name', 'email', 'phone', 'gender', 'info', 'image']
+    success_url = '/'
+    
