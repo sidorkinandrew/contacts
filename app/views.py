@@ -10,6 +10,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.forms import UserCreationForm
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 # Create your views here
 
 # def home(request):
@@ -26,7 +29,7 @@ from django.contrib.auth.forms import UserCreationForm
 #    return render(request, 'detail.html', context)
 
 
-class HomeView(ListView):
+class HomeView(LoginRequiredMixin, ListView):
     template_name = 'index.html'
     model = Contact
     context_object_name = 'contacts'
