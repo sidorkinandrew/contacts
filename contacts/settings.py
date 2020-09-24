@@ -134,4 +134,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # for authetification
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'home'
