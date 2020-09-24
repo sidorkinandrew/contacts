@@ -8,6 +8,8 @@ from django.db.models import Q
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from django.contrib.auth.forms import UserCreationForm
+
 # Create your views here
 
 # def home(request):
@@ -77,3 +79,10 @@ class ContactDeleteView(DeleteView):
     template_name = "delete.html"
 #    fields = ['name', 'email', 'phone', 'gender', 'info', 'image']
     success_url = '/'
+
+
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/signup.html'
+    success_url = 'home'
+
