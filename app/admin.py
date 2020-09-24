@@ -10,6 +10,8 @@ admin.site.unregister(Group)
 class ContactsAdmin(admin.ModelAdmin):
     # columns to diplay
     list_display = ('id', 'name', 'gender', 'email', 'info', 'phone')
+    # clickable columns
+    list_display_links = ('id', 'name')
     # columns to edit
     list_editable = ('info',)
     # entries per page
