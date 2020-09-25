@@ -27,7 +27,7 @@ class HomeView(LoginRequiredMixin, ListView):
     template_name = 'index.html'
     model = Contact
     context_object_name = 'contacts'
-    
+
     def get_queryset(self):
         contacts = super().get_queryset()
         return contacts.filter(manager = self.request.user)
@@ -51,7 +51,7 @@ def search(request):
         )
         context = {
             'search_term': search_term,
-            'contacts': search_results,
+            'contacts': search_results.filter(manager = request.user),
         }
         return render(request, 'search.html', context)
     else:
