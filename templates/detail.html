@@ -1,4 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% block title %} {{contact.name}}
+{% extends 'base.html' %} {% load static %}
+{% block title %} 
+{% if contact.manager == request.user %}
+{{contact.name}}
+{% else %}
+You don't have access to this page!
+{% endif %}
+
 {% endblock title %} {% block content %}
 
 {% if contact.manager == request.user %}
