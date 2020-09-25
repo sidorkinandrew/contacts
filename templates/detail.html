@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block title %} {{contact.name}}
 {% endblock title %} {% block content %}
 
+{% if contact.manager == request.user %}
+
 <!-- Main Section -->
 <div class="container">
   <h2 class="heading font-weight-light text-center">{{contact.name}}</h2>
@@ -21,5 +23,16 @@
   </p>
 </div>
 <!-- Main Section ends-->
+
+
+{% else %}
+
+<!-- Main Section -->
+<div class="container">
+  <h2 class="heading font-weight-light text-center">You don't have access to this page!</h2>
+</div>
+<!-- Main Section ends-->
+
+{% endif %}
 
 {% endblock content %}
