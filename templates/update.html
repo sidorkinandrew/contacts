@@ -3,11 +3,17 @@
 {% load crispy_forms_tags %}
 
 {% block title  %}
+{% if contact.manager == request.user %}
 Update contact for {{contact}}
+{% else %}
+You don't have access to this page!
+{% endif %}
 {% endblock title  %}
 
 {% block content %}
 
+
+{% if contact.manager == request.user %}
 <div class="container">
     <h2 class="heading font-weight-light text-center">
         Update contact for {{contact}}
@@ -21,4 +27,15 @@ Update contact for {{contact}}
     <input type="submit" value="Update contact" class="w-100 text0white text-center my-2 btn btn-info">
     </form>
 </div>
+
+{% else %}
+<div class="container">
+    <h2 class="heading font-weight-light text-center">
+        You don't have access to this page!
+    </h2>
+    <hr>
+</div>
+
+{% endif %}
+
 {% endblock content %}
