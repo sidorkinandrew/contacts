@@ -1,13 +1,13 @@
 from django.contrib import admin
 
-
+from import_export.admin import ImportExportModelAdmin
 
 # UnRegister Group
 from django.contrib.auth.models import Group
 admin.site.unregister(Group)
 
 # Customize Contacts
-class ContactsAdmin(admin.ModelAdmin):
+class ContactsAdmin(ImportExportModelAdmin):  # admin.ModelAdmin):
     # columns to diplay
     list_display = ('id', 'name', 'gender', 'email', 'info', 'phone')
     # clickable columns

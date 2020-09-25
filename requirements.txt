@@ -6,3 +6,4 @@ whitenoise==5.2.0
 psycopg2-binary>=2.8
 pillow
 django-crispy-forms
+django-import-export
