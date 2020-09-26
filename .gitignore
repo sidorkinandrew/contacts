@@ -1,8 +1,5 @@
 # Python
+env/
 *.pyc
 *.pyo
 db.sqlite3
-
-# Divio
-.divio
-/data.tar.gz
