@@ -6,11 +6,11 @@ ARG APP_USER=appuser
 RUN groupadd -r ${APP_USER} && useradd --no-log-init -r -g ${APP_USER} ${APP_USER}
 
 WORKDIR /code
-COPY . /code
 
-ADD requirements.txt /requirements.txt
-
+COPY requirements.txt .
 RUN pip install -r requirements.txt --no-cache
+
+COPY . /code
 
 # Add any static environment variables needed by Django or your settings file here:
 # ENV DJANGO_SETTINGS_MODULE=my_project.settings.deploy
@@ -39,3 +39,4 @@ ENV UWSGI_STATIC_MAP="/static/=/code/static/" UWSGI_STATIC_EXPIRES_URI="/static/
 CMD ["uwsgi", "--show-config"]
 
 # CMD uwsgi --module=myapp.wsgi --http=0.0.0.0:80
+# CMD web python manage.py runsslserver 0.0.0.0:8000
